@@ -4,14 +4,14 @@ const url = require('url')
 const shell=require('electron').shell
 require('electron-reload')(__dirname)
 const ipc = require('electron').ipcMain
-
+const GITHUB_URL='https://github.com/bikz007/cryptonotifier-app'
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 800, height: 600})
+  win = new BrowserWindow({width: 800, height: 500})
 
   // and load the index.html of the app.
   win.loadURL(url.format({
@@ -33,6 +33,7 @@ function createWindow () {
   var menu=Menu.buildFromTemplate([
         {
             label:'Menu',
+            
             submenu:[
                 {label:'Adjust Notification Value'},
                 {
@@ -80,6 +81,12 @@ function createWindow () {
                     label:'Inspect',
                     click(){
                         win.webContents.openDevTools()
+                    }
+                },
+                {
+                    label:'Contribute on Github',
+                    click(){
+                        shell.openExternal(GITHUB_URL)
                     }
                 }
             ]
