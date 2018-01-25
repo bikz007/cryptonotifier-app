@@ -10,8 +10,10 @@ const notifyBtnETH = document.getElementById('notifyBtnETH')
 
 var price1 = document.getElementById('pricebtc')
 var price2 = document.getElementById('priceeth')
-var targetPrice = document.getElementById('targetPrice')
-var targetPriceVal;
+var targetPrice1= document.getElementById('targetPrice1')
+var targetPrice2= document.getElementById('targetPrice2')
+var targetPriceValBTC;
+var targetPriceValETH;
 
 
 function getBTC() {
@@ -20,9 +22,9 @@ function getBTC() {
                     const cryptos = res.data.BTC.USD
                     price1.innerHTML = '$'+cryptos.toLocaleString('en')
 
-                    if (targetPrice.innerHTML != '' && targetPriceVal < res.data.BTC.USD) {
+                    if (targetPrice1.innerHTML != '' && targetPriceValBTC < res.data.BTC.USD) {
                         notifier.notify({
-                            message: 'BTC just beat your target price!',
+                            message: 'BTC just beat your target price!\nHike of $'+((res.data.BTC.USD-targetPriceValBTC).toLocaleString('en')),
                             title: 'Crypto Alert',
                             sound: true,
                             icon: path.join(__dirname, '../assets/images/Bitcoin.ico'),
@@ -42,12 +44,12 @@ function getETH() {
                     const cryptos = res.data.ETH.USD
                     price2.innerHTML = '$'+cryptos.toLocaleString('en')
 
-                    if (targetPrice.innerHTML != '' && targetPriceVal < res.data.ETH.USD) {
+                    if (targetPrice2.innerHTML != '' && targetPriceValETH < res.data.ETH.USD) {
                         notifier.notify({
-                            message: 'ETH just beat your target price!',
+                            message: 'ETH just beat your target price!\nHike of $'+((res.data.ETH.USD-targetPriceValETH).toLocaleString('en')),
                             title: 'Crypto Alert',
                             sound: true,
-                            icon: path.join(__dirname, '../assets/images/Bitcoin.ico'),
+                            icon: path.join(__dirname, '../assets/images/ethereum.png'),
                             wait:true
                         });
                     }
@@ -59,13 +61,13 @@ getETH();
 setInterval ( getETH, 30000 );
 
 notifyBtnBTC.addEventListener('click', function (event) {
-    const modalPath = path.join('file://', __dirname, 'add.html')
+    const modalPath = path.join('file://', __dirname, 'addBTC.html')
     let win = new BrowserWindow({ 
         frame: false, 
         transparent: true, 
         alwaysOnTop: true,    // Add this line
         width: 400, 
-        height: 300
+        height: 250
     })
     win.on('close', function () { win = null })
     win.loadURL(modalPath)
@@ -73,20 +75,24 @@ notifyBtnBTC.addEventListener('click', function (event) {
 })
 
 notifyBtnETH.addEventListener('click', function (event) {
-    const modalPath = path.join('file://', __dirname, 'add.html')
+    const modalPath = path.join('file://', __dirname, 'addETH.html')
     let win = new BrowserWindow({ 
         frame: false, 
         transparent: true, 
         alwaysOnTop: true,    // Add this line
         width: 400, 
-        height:300
+        height:250
     })
     win.on('close', function () { win = null })
     win.loadURL(modalPath)
     win.show()
 })
 
-ipc.on('targetPriceVal', function (event, arg) {
-    targetPriceVal = Number(arg);
-    targetPrice.innerHTML = '$'+targetPriceVal.toLocaleString('en')
+ipc.on('targetPriceValBTC', function (event, arg) {
+    targetPriceValBTC = Number(arg);
+    targetPrice1.innerHTML = '$'+targetPriceValBTC.toLocaleString('en')
+})
+ipc.on('targetPriceValETH', function (event, arg) {
+    targetPriceValETH = Number(arg);
+    targetPrice2.innerHTML = '$'+targetPriceValETH.toLocaleString('en')
 })  

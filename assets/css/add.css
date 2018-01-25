@@ -1,6 +1,6 @@
 body {
     background:#DFDFDF;
-    color:#000;
+    color:rgb(0, 0, 0);
     overflow:hidden;
 }
 
@@ -23,7 +23,12 @@ input {
     padding:12px;
 }
 
-#closeBtn {
+#closeBtnBTC {
+    cursor:pointer;
+    padding:20px;
+    text-decoration:underline;
+}
+#closeBtnETH {
     cursor:pointer;
     padding:20px;
     text-decoration:underline;
