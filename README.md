@@ -15,3 +15,15 @@ A native desktop app to get notified whenever a cryptocurrency value exceeds mor
 `$ npm start`
 in the terminal or cmd inside the project folder
 
+### Screens
+1.
+![1](https://github.com/bikz007/cryptonotifier-app/blob/master/screenshots/1.png)
+2.
+![1](https://github.com/bikz007/cryptonotifier-app/blob/master/screenshots/2.png)
+3.
+![1](https://github.com/bikz007/cryptonotifier-app/blob/master/screenshots/3.png)
+4.
+![1](https://github.com/bikz007/cryptonotifier-app/blob/master/screenshots/4.png)
+5.
+![1](https://github.com/bikz007/cryptonotifier-app/blob/master/screenshots/5.png)
+
