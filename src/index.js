@@ -5,6 +5,9 @@ const axios = require('axios');
 const ipc = electron.ipcRenderer
 const notifier = require("node-notifier")
 
+//variable to get notification interval value from main.js file
+var remote = require('electron').remote;
+
 const notifyBtnBTC = document.getElementById('notifyBtnBTC')
 const notifyBtnETH = document.getElementById('notifyBtnETH')
 
@@ -35,8 +38,9 @@ function getBTC() {
         )
 }
 
+//remote.getGlobal('sharedObj').notival #getting value for notification interval
 getBTC();
-setInterval ( getBTC, 30000 );
+setInterval ( getBTC,remote.getGlobal('sharedObj').notival);
 
 function getETH() {
     axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH&tsyms=USD')
@@ -58,7 +62,7 @@ function getETH() {
 }
 
 getETH();
-setInterval ( getETH, 30000 );
+setInterval ( getETH, remote.getGlobal('sharedObj').notival);
 
 notifyBtnBTC.addEventListener('click', function (event) {
     const modalPath = path.join('file://', __dirname, 'addBTC.html')

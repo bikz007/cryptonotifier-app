@@ -5,6 +5,9 @@ const shell=require('electron').shell
 require('electron-reload')(__dirname)
 const ipc = require('electron').ipcMain
 const GITHUB_URL='https://github.com/bikz007/cryptonotifier-app'
+
+//global object for notification inteval value
+global.sharedObj={notival :30000 }
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -35,7 +38,30 @@ function createWindow () {
             label:'Menu',
             
             submenu:[
-                {label:'Adjust Notification Value'},
+                {
+                    label:'Adjust Notification Interval',
+                    submenu:[
+                        {
+                            label:'30 minutes',
+                            click(){
+                                //setting notification inteval value
+                                global.sharedObj.notival=180000
+                            }
+                        },
+                        {
+                            label:'60 minutes',
+                            click(){
+                                global.sharedObj.notival=360000;
+                            }
+                        },
+                        {
+                            label:'2 hour',
+                            click(){
+                                global.sharedObj.notival=720000;
+                            }
+                        }
+                    ]
+                },
                 {
                     label:'Platforms',
                     submenu:[
