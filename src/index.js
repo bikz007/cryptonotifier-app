@@ -10,6 +10,11 @@ var remote = require('electron').remote;
 
 const notifyBtnBTC = document.getElementById('notifyBtnBTC')
 const notifyBtnETH = document.getElementById('notifyBtnETH')
+const notifyBtnLTC = document.getElementById('notifyBtnLTC')
+const notifyBtnNEO = document.getElementById('notifyBtnNEO')
+const notifyBtnXMR = document.getElementById('notifyBtnXMR')
+const notifyBtnXRP = document.getElementById('notifyBtnXRP')
+const notifyBtnZEC = document.getElementById('notifyBtnZEC')
 
 var price1 = document.getElementById('pricebtc')
 var price2 = document.getElementById('priceeth')
@@ -18,6 +23,7 @@ var price4 = document.getElementById('priceneo')
 var price5 = document.getElementById('pricexmr')
 var price6 = document.getElementById('pricexrp')
 var price7 = document.getElementById('pricezec')
+
 var targetPrice1= document.getElementById('targetPrice1')
 var targetPrice2= document.getElementById('targetPrice2')
 var targetPrice3= document.getElementById('targetPrice3')
@@ -91,7 +97,7 @@ function getLTC() {
                             message: 'LTC just beat your target price!\nHike of $'+((res.data.LTC.USD-targetPriceValLTC).toLocaleString('en')),
                             title: 'Crypto Alert',
                             sound: true,
-                            icon: path.join(__dirname, '../assets/images/ethereum.png'),
+                            icon: path.join(__dirname, '../assets/images/litecoin.png'),
                             wait:true
                         });
                     }
@@ -113,7 +119,7 @@ function getNEO() {
                             message: 'NEO just beat your target price!\nHike of $'+((res.data.NEO.USD-targetPriceValNEO).toLocaleString('en')),
                             title: 'Crypto Alert',
                             sound: true,
-                            icon: path.join(__dirname, '../assets/images/ethereum.png'),
+                            icon: path.join(__dirname, '../assets/images/neo.jpg'),
                             wait:true
                         });
                     }
@@ -135,7 +141,7 @@ function getXMR() {
                             message: 'XMR just beat your target price!\nHike of $'+((res.data.XMR.USD-targetPriceValXMR).toLocaleString('en')),
                             title: 'Crypto Alert',
                             sound: true,
-                            icon: path.join(__dirname, '../assets/images/ethereum.png'),
+                            icon: path.join(__dirname, '../assets/images/xmr.png'),
                             wait:true
                         });
                     }
@@ -157,7 +163,7 @@ function getXRP() {
                             message: 'XRP just beat your target price!\nHike of $'+((res.data.XRP.USD-targetPriceValXRP).toLocaleString('en')),
                             title: 'Crypto Alert',
                             sound: true,
-                            icon: path.join(__dirname, '../assets/images/ethereum.png'),
+                            icon: path.join(__dirname, '../assets/images/ripple.png'),
                             wait:true
                         });
                     }
@@ -179,7 +185,7 @@ function getZEC() {
                             message: 'ZEC just beat your target price!\nHike of $'+((res.data.ZEC.USD-targetPriceValZEC).toLocaleString('en')),
                             title: 'Crypto Alert',
                             sound: true,
-                            icon: path.join(__dirname, '../assets/images/ethereum.png'),
+                            icon: path.join(__dirname, '../assets/images/zec.png'),
                             wait:true
                         });
                     }
@@ -218,6 +224,76 @@ notifyBtnETH.addEventListener('click', function (event) {
     win.show()
 })
 
+notifyBtnLTC.addEventListener('click', function (event) {
+    const modalPath = path.join('file://', __dirname, 'addLTC.html')
+    let win = new BrowserWindow({ 
+        frame: false, 
+        transparent: true, 
+        alwaysOnTop: true,    // Add this line
+        width: 400, 
+        height:250
+    })
+    win.on('close', function () { win = null })
+    win.loadURL(modalPath)
+    win.show()
+})
+
+notifyBtnNEO.addEventListener('click', function (event) {
+    const modalPath = path.join('file://', __dirname, 'addNEO.html')
+    let win = new BrowserWindow({ 
+        frame: false, 
+        transparent: true, 
+        alwaysOnTop: true,    // Add this line
+        width: 400, 
+        height:250
+    })
+    win.on('close', function () { win = null })
+    win.loadURL(modalPath)
+    win.show()
+})
+
+notifyBtnXMR.addEventListener('click', function (event) {
+    const modalPath = path.join('file://', __dirname, 'addXMR.html')
+    let win = new BrowserWindow({ 
+        frame: false, 
+        transparent: true, 
+        alwaysOnTop: true,    // Add this line
+        width: 400, 
+        height:250
+    })
+    win.on('close', function () { win = null })
+    win.loadURL(modalPath)
+    win.show()
+})
+
+notifyBtnXRP.addEventListener('click', function (event) {
+    const modalPath = path.join('file://', __dirname, 'addXRP.html')
+    let win = new BrowserWindow({ 
+        frame: false, 
+        transparent: true, 
+        alwaysOnTop: true,    // Add this line
+        width: 400, 
+        height:250
+    })
+    win.on('close', function () { win = null })
+    win.loadURL(modalPath)
+    win.show()
+})
+
+notifyBtnZEC.addEventListener('click', function (event) {
+    const modalPath = path.join('file://', __dirname, 'addZEC.html')
+    let win = new BrowserWindow({ 
+        frame: false, 
+        transparent: true, 
+        alwaysOnTop: true,    // Add this line
+        width: 400, 
+        height:250
+    })
+    win.on('close', function () { win = null })
+    win.loadURL(modalPath)
+    win.show()
+})
+
 ipc.on('targetPriceValBTC', function (event, arg) {
     targetPriceValBTC = Number(arg);
     targetPrice1.innerHTML = '$'+targetPriceValBTC.toLocaleString('en')
@@ -225,4 +301,24 @@ ipc.on('targetPriceValBTC', function (event, arg) {
 ipc.on('targetPriceValETH', function (event, arg) {
     targetPriceValETH = Number(arg);
     targetPrice2.innerHTML = '$'+targetPriceValETH.toLocaleString('en')
-})  
+})
+ipc.on('targetPriceValLTC', function (event, arg) {
+    targetPriceValLTC = Number(arg);
+    targetPrice3.innerHTML = '$'+targetPriceValLTC.toLocaleString('en')
+})
+ipc.on('targetPriceValNEO', function (event, arg) {
+    targetPriceValNEO = Number(arg);
+    targetPrice4.innerHTML = '$'+targetPriceValNEO.toLocaleString('en')
+})
+ipc.on('targetPriceValXMR', function (event, arg) {
+    targetPriceValXMR = Number(arg);
+    targetPrice5.innerHTML = '$'+targetPriceValXMR.toLocaleString('en')
+})     
+ipc.on('targetPriceValXRP', function (event, arg) {
+    targetPriceValXRP = Number(arg);
+    targetPrice6.innerHTML = '$'+targetPriceValXRP.toLocaleString('en')
+}) 
+ipc.on('targetPriceValZEC', function (event, arg) {
+    targetPriceValZEC = Number(arg);
+    targetPrice7.innerHTML = '$'+targetPriceValZEC.toLocaleString('en')
+}) 

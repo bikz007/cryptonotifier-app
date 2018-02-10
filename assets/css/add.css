@@ -23,16 +23,19 @@ input {
     padding:12px;
 }
 
-#closeBtnBTC {
+#closeBtnBTC,
+#closeBtnETH,
+#closeBtnLTC,
+#closeBtnNEO,
+#closeBtnXMR,
+#closeBtnXRP,
+#closeBtnZEC
+ {
     cursor:pointer;
     padding:20px;
     text-decoration:underline;
 }
-#closeBtnETH {
-    cursor:pointer;
-    padding:20px;
-    text-decoration:underline;
-}
+
 html, body {
     background: rgba(226, 226, 226, 0.5);
     height:100%;

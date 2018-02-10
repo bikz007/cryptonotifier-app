@@ -43,6 +43,13 @@ function createWindow () {
                     label:'Adjust Notification Interval',
                     submenu:[
                         {
+                            label:'Default',
+                            click(){
+                                //setting notification inteval value
+                                global.sharedObj.notival=30000
+                            }
+                        },
+                        {
                             label:'30 minutes',
                             click(){
                                 //setting notification inteval value
@@ -67,15 +74,15 @@ function createWindow () {
                     label:'Platforms',
                     submenu:[
                         {
-                            label:'CoinMarketCap',
-                            click(){
-                                shell.openExternal('http://coinmarketcap.com')
-                            }
-                        },
-                        {
                             label:'CrptoCompare',
                             click(){
                                 shell.openExternal('https://www.cryptocompare.com/')
+                            }
+                        },
+                        {
+                            label:'CoinMarketCap',
+                            click(){
+                                shell.openExternal('http://coinmarketcap.com')
                             }
                         },
                         {
@@ -152,4 +159,19 @@ ipc.on('update-notify-value-BTC', function (event, arg) {
 })
 ipc.on('update-notify-value-ETH', function (event, arg) {
     win.webContents.send('targetPriceValETH', arg)
+})
+ipc.on('update-notify-value-LTC', function (event, arg) {
+    win.webContents.send('targetPriceValLTC', arg)
+})
+ipc.on('update-notify-value-NEO', function (event, arg) {
+    win.webContents.send('targetPriceValNEO', arg)
+})
+ipc.on('update-notify-value-XMR', function (event, arg) {
+    win.webContents.send('targetPriceValXMR', arg)
+})
+ipc.on('update-notify-value-XRP', function (event, arg) {
+    win.webContents.send('targetPriceValXRP', arg)
+})
+ipc.on('update-notify-value-ZEC', function (event, arg) {
+    win.webContents.send('targetPriceValZEC', arg)
 })
